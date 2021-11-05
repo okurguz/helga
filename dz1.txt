@@ -1,0 +1,73 @@
+1) pwd - посмотреть где я
+2) mkdir  test_1 - создать папку с названием  test_1
+3) cd test_1 - перейти в папку с названием test_1
+4) mkdir folder_{1..3} - создать 3 папки с названием folder_1 до folder_3
+5) cd folder_3 - зайти в папку с названием folder_3
+6) touch file_t_{1..3}.txt file_j_{1,2}.json - cоздать 5 файлов (3 txt, 2 json)
+7) mkdir fold_{1..3} - создать 3 папки с названием fold_1 до fold_3
+8) ls - la - вывести содержимое папки 
+9) nano file_t_2.txt - открыть файл file_t_2.txt
+10) написать следующий текст:
+    31.10.2021
+	kaliningrad
+	test
+	terminal
+	txt
+	folder
+	12345678
+	Olga 
+	Windows
+11) ^O сохранить
+    ^X затем Y выйти
+12) cd ../ - выйти из папки на уровень выше (из папки folder_3 в папку test_1)
+13) mv folder3/{file_j_1.json,file_t_1.txt} folder3/fold_1
+
+в папке test_1 находится папка folder_3, в ней перемещаемые файлы file_j_1.json file_t_1.txt 
+перемещам файлы в folder3/fold_1
+
+14) скопировать любые 2 файла, которые вы создали, в любую другую папку.
+cp folder3/file_j_2.json folder3/file_t_2.txt folder3/fold_2
+15) Найти файл по имени
+find . -type f -name "file_t_3.txt" - команда
+./folder3/file_t_3.txt - ответ 
+16) 	grep - поиск определенных слов/символов в файле 
+grep "kaliningrad" folder3/file_t_2.txt - команда
+kaliningrad - ответ
+		
+	tail -f folder3/file_t_3.txt - просмотр содержимого файла file_t_3.txt, 
+	при внесении изменений,они выводятся в терминал в режиме реального времени
+17) head -3 file_t_2.txt
+или
+cat folder3/file_t_2.txt | sed -n 1,3p - вывести первые 3 строки
+18) tail -n3 folder3/file_t_2.txt - вывести последние 3 строки
+19) less - просмотр документа с возможностью поиска слов командой - ?текст
+less folder3/file_t_2.txt
+или 
+less - s folder3/file_t_2.txt
+?te внутри документа - ищет все слова сожержащие сочетание te
+20) date - вывести дату и время
+
+Задание *
+1) Отправить http запрос на сервер.
+http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000
+команда:
+curl "http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000"
+
+2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13
+nano script_1.sh - создать файл для написания скрипта
+в нем прописываем:
+#!/bin/bash
+
+cd test_2 перейти в папку test_2
+mkdir folder_{1..3} создать 3 папки
+cd folder_2 переходим в папку folder_2
+touch text_{1..3}.txt js_{1,2}.json создать 5 файлов
+ls -la - просмотреть содердимое
+mkdir new_{1..3} создать 3 папки
+mv ./{js_1.json,text_1.txt} new_1 ппереместить файлы 
+echo "OK!" сообщение по завершении обрабоки скрипта
+
+^O - сохранить
+^X затем Y - закрыть
+
+bash script_1.sh - команда для запуска скрипта
