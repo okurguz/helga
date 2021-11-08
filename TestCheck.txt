@@ -1,0 +1,5 @@
+Check number - 1
+Name - Test CheckList
+Result of checking - failed
+Status - link to the bug
+Tester - Olga
