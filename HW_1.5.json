@@ -1,220 +1,353 @@
 {
-	"id": "37bc6280-3f85-4aaf-9c4b-219810d16c81",
-	"name": "HW_1.5",
-	"timestamp": "2021-11-22T17:33:01.416Z",
-	"collection_id": "17971787-3469da4c-cb16-4b5a-ba34-23d96e594f21",
-	"folder_id": 0,
-	"environment_id": "b4cb599d-3eb6-4f0e-9a6e-49be7a7bc479",
-	"totalPass": 17,
-	"totalFail": 0,
-	"results": [
+	"info": {
+		"_postman_id": "3469da4c-cb16-4b5a-ba34-23d96e594f21",
+		"name": "HW_1.5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "204fc14a-0815-48c4-95de-d6d7a55abc31",
 			"name": "first",
-			"url": "http://162.55.220.72:5005/first",
-			"time": 120,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Body matches string": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Body matches string": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				120
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true,
-					"Body matches string": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This is the first responce from server!\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "5d49550c-d1c6-4f28-a4f4-ca53b716e8af",
 			"name": "user_info_3",
-			"url": "http://162.55.220.72:5005/user_info_3",
-			"time": 125,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Test response": true,
-				"Test request": true,
-				"Test:u_salary_1_5_year=salary*4": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test response": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test request": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test:u_salary_1_5_year=salary*4": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				125
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true,
-					"Test response": true,
-					"Test request": true,
-					"Test:u_salary_1_5_year=salary*4": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// response\r",
+							"var jsonData = pm.response.json();\r",
+							"var resp_age = Number(jsonData.age);\r",
+							"var resp_name = jsonData.name;\r",
+							"var resp_salary = jsonData.salary;\r",
+							"\r",
+							"pm.test(\"Test response\", function () {\r",
+							"    pm.expect(resp_age).to.eql(29);\r",
+							"    pm.expect(resp_name).to.eql(\"Olga\");\r",
+							"     pm.expect(resp_salary).to.eql(1500);\r",
+							"});\r",
+							"\r",
+							"//request\r",
+							"var req_body = request.data;\r",
+							"var req_name = req_body.name;\r",
+							"var req_age = req_body.age;\r",
+							"var req_salary = req_body.salary;\r",
+							"\r",
+							"pm.test(\"Test request\", function () {\r",
+							"    pm.expect(req_name).to.eql(\"Olga\");\r",
+							"    pm.expect(req_age).to.eql(\"29\");\r",
+							"    pm.expect(req_salary).to.eql(\"1500\");\r",
+							"});\r",
+							"\r",
+							"// console\r",
+							"console.log(jsonData.family);\r",
+							"\r",
+							"// Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)\r",
+							"var resp_salary_1_5 = jsonData.family.u_salary_1_5_year;\r",
+							"pm.test(\"Test:u_salary_1_5_year=salary*4\", function () {\r",
+							"    pm.expect(resp_salary_1_5).to.eql(Number(req_salary)*4);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Olga",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "29",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1500",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "ea6491f5-071b-4921-9396-f40df54cd3c2",
 			"name": "object_info_3",
-			"url": "http://162.55.220.72:5005/object_info_3?name=Olga&age=29&salary=1500",
-			"time": 117,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Test response": true,
-				"Test request": true,
-				"Test response=request": true,
-				"Parameter": true,
-				"Params": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test response": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test request": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test response=request": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Parameter": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Params": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				117
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true,
-					"Test response": true,
-					"Test request": true,
-					"Test response=request": true,
-					"Parameter": true,
-					"Params": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 2. Статус код 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// 3. Спарсить response body в json.\r",
+							"// response\r",
+							"var jsonData = pm.response.json();\r",
+							"var resp_age = Number(jsonData.age);\r",
+							"var resp_name = jsonData.name;\r",
+							"var resp_salary = jsonData.salary;\r",
+							"\r",
+							"pm.test(\"Test response\", function () {\r",
+							"    pm.expect(resp_age).to.eql(29);\r",
+							"    pm.expect(resp_name).to.eql(\"Olga\");\r",
+							"    pm.expect(resp_salary).to.eql(1500);\r",
+							"});\r",
+							"\r",
+							"// request\r",
+							"var jsonReq = pm.request.url.query.toObject()\r",
+							"var req_name = jsonReq.name;\r",
+							"var req_age = Number(jsonReq.age);\r",
+							"var req_salary = Number(jsonReq.salary);\r",
+							"\r",
+							"pm.test(\"Test request\", function () {\r",
+							"    pm.expect(req_name).to.eql(\"Olga\");\r",
+							"    pm.expect(req_age).to.eql(29);\r",
+							"    pm.expect(req_salary).to.eql(1500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test response=request\", function () {\r",
+							"    pm.expect(resp_age).to.eql(req_age);\r",
+							"    pm.expect(resp_name).to.eql(req_name);\r",
+							"    pm.expect(resp_salary).to.eql(req_salary);\r",
+							"});\r",
+							"\r",
+							"// console\r",
+							"console.log(jsonData.family);\r",
+							"\r",
+							"// parameter\r",
+							"let pets_dog = jsonData.family.pets.dog;\r",
+							"\r",
+							"pm.test(\"Parameter\", function () {\r",
+							"    pm.expect(pets_dog).to.have.property(\"name\");\r",
+							"    pm.expect(pets_dog).to.have.property(\"age\");\r",
+							"});\r",
+							" \r",
+							"// parameter value \r",
+							"\r",
+							"pm.test(\"Params\", function () {\r",
+							"    pm.expect(pets_dog.name).to.eql(\"Luky\");\r",
+							"    pm.expect(pets_dog.age).to.eql(4);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_3?name=Olga&age=29&salary=1500",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Olga"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						},
+						{
+							"key": "salary",
+							"value": "1500"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "6a2d97aa-df7d-4904-8264-9dec066070a7",
 			"name": "object_info_4",
-			"url": "http://162.55.220.72:5005/object_info_4?name=Olga&age=29&salary=1500",
-			"time": 114,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Test response": true,
-				"Test request": true,
-				"Test response=request": true,
-				"Test salary": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test response": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test request": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test response=request": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Test salary": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				114
-			],
-			"allTests": [
+			"event": [
 				{
-					"Status code is 200": true,
-					"Test response": true,
-					"Test request": true,
-					"Test response=request": true,
-					"Test salary": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// response\r",
+							"var jsonData = pm.response.json();\r",
+							"var resp_age = jsonData.age;\r",
+							"var resp_name = jsonData.name;\r",
+							"var resp_salary = jsonData.salary[0];\r",
+							"\r",
+							"pm.test(\"Test response\", function () {\r",
+							"    pm.expect(resp_age).to.eql(29);\r",
+							"    pm.expect(resp_name).to.eql(\"Olga\");\r",
+							"    pm.expect(resp_salary).to.eql(1500);\r",
+							"});\r",
+							"\r",
+							"//request\r",
+							"var jsonReq = pm.request.url.query.toObject()\r",
+							"var req_name = jsonReq.name;\r",
+							"var req_age = Number(jsonReq.age);\r",
+							"var req_salary = Number(jsonReq.salary);\r",
+							"\r",
+							"pm.test(\"Test request\", function () {\r",
+							"    pm.expect(req_name).to.eql(\"Olga\");\r",
+							"    pm.expect(req_age).to.eql(29);\r",
+							"    pm.expect(req_salary).to.eql(1500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Test response=request\", function () {\r",
+							"    pm.expect(resp_age).to.eql(req_age);\r",
+							"    pm.expect(resp_name).to.eql(req_name);\r",
+							"    pm.expect(resp_salary).to.eql(req_salary);\r",
+							"});\r",
+							"\r",
+							"// console\r",
+							"console.log(jsonData.salary[0]);\r",
+							"console.log(jsonData.salary[1]);\r",
+							"console.log(jsonData.salary[2]);\r",
+							"\r",
+							"var resp_salary_1 = Number(jsonData.salary[1]);\r",
+							"var resp_salary_2 = Number(jsonData.salary[2]);\r",
+							"pm.test(\"Test salary\", function () {\r",
+							"    pm.expect(resp_salary).to.eql(req_salary);\r",
+							"    pm.expect(resp_salary_1).to.eql(req_salary*2);\r",
+							"    pm.expect(resp_salary_2).to.eql(req_salary*3);\r",
+							"});\r",
+							"\r",
+							"// 15. Создать и передать в окружении переменную \r",
+							"\r",
+							"pm.environment.set(\"name\", resp_name); \r",
+							"pm.environment.set(\"age\", resp_age);\r",
+							"pm.environment.set(\"salary\", resp_salary);\r",
+							"\r",
+							"// cycle salary\r",
+							"let arr_salary = [jsonData.salary];\r",
+							"\r",
+							"for (key in arr_salary) {\r",
+							"  console.log(arr_salary[key]);\r",
+							"};\r",
+							"// или\r",
+							"var json_resp = JSON.parse(responseBody);\r",
+							"var salary = json_resp.salary\r",
+							"\r",
+							" for (var i=0; i< salary.length; i++){   \r",
+							"    console.log(\"salary\" + i + \": \" +salary[i])\r",
+							"}\r",
+							"// или\r",
+							" for (let i of salary){\r",
+							"     console.log(\"salary = \" + i)\r",
+							" }"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_4?name=Olga&age=29&salary=1500",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Olga"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						},
+						{
+							"key": "salary",
+							"value": "1500"
+						}
+					]
+				}
+			},
+			"response": []
 		}
-	],
-	"count": 1,
-	"totalTime": 476,
-	"collection": {
-		"requests": [
-			{
-				"id": "204fc14a-0815-48c4-95de-d6d7a55abc31",
-				"method": "GET"
-			},
-			{
-				"id": "5d49550c-d1c6-4f28-a4f4-ca53b716e8af",
-				"method": "POST"
-			},
-			{
-				"id": "ea6491f5-071b-4921-9396-f40df54cd3c2",
-				"method": "GET"
-			},
-			{
-				"id": "6a2d97aa-df7d-4904-8264-9dec066070a7",
-				"method": "GET"
-			}
-		]
-	}
+	]
 }
