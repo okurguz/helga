@@ -455,7 +455,10 @@
 							"pm.test(\"environment=pesponse\", function () {\r",
 							"pm.expect(resp_name).to.eql(pm.environment.get(\"name\"));\r",
 							"});\r",
-							""
+							"\r",
+							"pm.test(\"Test age response=age request\", function () {\r",
+							"    pm.expect(jsonData.age).to.eql(jsonReq.age);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -506,12 +509,20 @@
 					"script": {
 						"exec": [
 							"var resp_JSON = pm.response.json();\r",
-							"var random = resp_JSON[Math.floor(Math.random()*resp_JSON.length)];\r",
-							"console.log(\"Cur_ID\", random);\r",
+							"var Cur_ID;\r",
+							"for (var i = 0; i < resp_JSON.length;){\r",
+							"    var random = resp_JSON[Math.floor(Math.random() * pm.response.json().length)].Cur_ID;\r",
+							"    if (random >=371){\r",
+							"        Cur_ID = random;\r",
+							"        break;\r",
+							"    } else {\r",
+							"        i++;\r",
+							"    }\r",
+							"}; \r",
 							"\r",
-							"var Cur_ID = random.Cur_ID\r",
-							"\r",
-							"// pm.environment.set(\"Cur_ID\", Cur_ID);"
+							"console.log(\"Cur_ID\", Cur_ID);\r",
+							"pm.environment.set(\"Cur_ID\", Cur_ID);\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -584,7 +595,9 @@
 							"pm.test(\"Schema is valid\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(tv4.validate(jsonData,schema)).to.be.true;\r",
-							"});"
+							"});\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
