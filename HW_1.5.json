@@ -19,7 +19,8 @@
 							"pm.test(\"Body matches string\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"This is the first responce from server!\");\r",
 							"});"
-						],
+				bash: C: command not found
+		],
 						"type": "text/javascript"
 					}
 				}
@@ -28,7 +29,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/first",
+					"raw": "{{url}}first",
 					"host": [
 						"{{url}}"
 					],
