@@ -28,7 +28,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/first",
+					"raw": "{{url}}first",
 					"host": [
 						"{{url}}"
 					],
