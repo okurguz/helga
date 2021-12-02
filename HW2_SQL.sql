@@ -250,7 +250,7 @@ values  (4,10),
 		(70,15),
 		(11,3);
 	
---ïðîñìîòð òàáëèö				
+--просмотр таблиц				
 select * from employees;
 select * from salary;
 select * from employee_salary ;
