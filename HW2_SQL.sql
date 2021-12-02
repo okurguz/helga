@@ -102,7 +102,7 @@ values  (1000),
 		(2400),
 		(2500);	
 
---5 Ñîçäàòü òàáëèöó employee_salary
+--5 Создать таблицу employee_salary
 
 create table employee_salary(
 id serial primary key,
