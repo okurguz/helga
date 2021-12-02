@@ -102,7 +102,7 @@ values  (1000),
 		(2400),
 		(2500);	
 
---5 Ñîçäàòü òàáëèöó employee_salary
+--5 Создать таблицу employee_salary
 
 create table employee_salary(
 id serial primary key,
@@ -207,7 +207,7 @@ foreign key (role_id)
 	references roles(id)
 );
 
---11 аполнить таблицу roles_employee 40 строками:
+--11 Наполнить таблицу roles_employee 40 строками:
 insert into roles_employee (employee_id, role_id)
 values  (4,10),
 		(1,2),
