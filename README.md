@@ -1,9 +1,8 @@
-***Hi guys!*** ✌ 
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8">
+<p>Hi guys! ✌<p>
+<p>Here you can find the results of my studies and work 🧠<p>
 
-_Here you can find the results of my studies and work 🧠_
-
-<a target="_blank" href="https://okurguz.github.io/"><img src="images/comp.gif" width="70px" height="60px" alt="Go to portfolio"></a>
-<a target="_blank" href="https://okurguz.github.io/"><img src="images/soft.gif" height="60px" alt="Go to portfolio"></a>
-<a target="_blank" href="https://okurguz.github.io/"><img src="images/soft.gif" height="60px"></a>
- </body>
+  </body>
 </html>
